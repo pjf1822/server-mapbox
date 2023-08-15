@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8000;
 const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? "https://your-production-domain.com"
+      ? "https://frontend-mapbox-9xb2wlowd-pjf1822.vercel.app/"
       : "http://localhost:5173",
 };
 
