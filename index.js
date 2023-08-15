@@ -24,6 +24,9 @@ app.use(cookieParser());
 
 // routes
 app.use("/api", allRoutes);
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
 
 // db connect
 const connectDB = async () => {
