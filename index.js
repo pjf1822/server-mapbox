@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 const corsOptions = {
-  origin: "https://frontend-mapbox-9xb2wlowd-pjf1822.vercel.app",
+  origin: "https://frontend-mapbox-8rktlre2c-pjf1822.vercel.app/",
 };
 
 // middleware
