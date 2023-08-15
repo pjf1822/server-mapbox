@@ -34,8 +34,6 @@ const connectDB = async () => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
-
-    console.log("database connecteddd");
   } catch (error) {
     console.log(error);
     process.exit(1);
@@ -44,5 +42,4 @@ const connectDB = async () => {
 // run express server
 app.listen(PORT, () => {
   connectDB();
-  console.log(`the server has started on port ${PORT}`);
 });
