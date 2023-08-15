@@ -9,18 +9,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 const corsOptions = {
-  origin: "*",
+  origin: "https://frontend-mapbox-8rktlre2c-pjf1822.vercel.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // This allows the session cookie to be sent back and forth
+  optionsSuccessStatus: 204, // Some legacy browsers choke on 204
 };
 
 // middleware
 app.use(cors(corsOptions));
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://frontend-mapbox-8rktlre2c-pjf1822.vercel.app"
-//   );
-//   next();
-// });
+
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("tiny"));
 app.use(express.json());
