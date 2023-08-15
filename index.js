@@ -1,0 +1,48 @@
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import allRoutes from "./routes/index.js";
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 8000;
+const corsOptions = {
+  origin:
+    process.env.NODE_ENV === "production"
+      ? "https://your-production-domain.com"
+      : "http://localhost:5173",
+};
+
+// middleware
+app.use(cors(corsOptions));
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("tiny"));
+app.use(express.json());
+app.use(cookieParser());
+
+// routes
+app.use("/api", allRoutes);
+
+// db connect
+const connectDB = async () => {
+  try {
+    await mongoose
+      .set("strictQuery", true)
+      .connect(process.env.DB_CONNECTION_STRING, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+
+    console.log("database connecteddd");
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+// run express server
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`the server has started on port ${PORT}`);
+});
