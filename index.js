@@ -13,7 +13,7 @@ const corsOptions = {
   origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // This allows the session cookie to be sent back and forth
-  optionsSuccessStatus: 204, // Some legacy browsers choke on 204
+  optionsSuccessStatus: 204,
 };
 
 // middleware
