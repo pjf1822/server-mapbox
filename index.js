@@ -9,8 +9,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 const corsOptions = {
-  origin: "https://frontend-mapbox.vercel.app",
-  // origin: "*",
+  // origin: "https://frontend-mapbox.vercel.app",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // This allows the session cookie to be sent back and forth
   optionsSuccessStatus: 204,
