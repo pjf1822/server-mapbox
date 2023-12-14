@@ -46,5 +46,6 @@ const connectDB = async () => {
 };
 // run express server
 app.listen(PORT, () => {
+  console.log(`server on ${PORT} `);
   connectDB();
 });

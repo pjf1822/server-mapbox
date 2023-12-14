@@ -1,5 +1,4 @@
 import Address from "../models/Address.js";
-import mongoose from "mongoose";
 import { body, param, validationResult } from "express-validator";
 
 export const getAllAddresses = async (req, res, next) => {
@@ -23,12 +22,12 @@ export const createAddress = [
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { coordinates } = req.body;
+    const { coordinates } = req?.body;
 
     const address = new Address({
-      description: req.body.description,
-      link: req.body.link,
-      coordinates: [Number(coordinates.theLng), Number(coordinates.theLat)],
+      description: req?.body?.description,
+      link: req?.body?.link,
+      coordinates: [Number(coordinates?.theLng), Number(coordinates?.theLat)],
     });
 
     try {
