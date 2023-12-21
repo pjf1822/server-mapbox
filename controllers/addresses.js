@@ -9,6 +9,22 @@ export const getAllAddresses = async (req, res, next) => {
     res.status(400).json({ message: "Error fetching addresses" });
   }
 };
+
+export const getAllAddressesByIds = async (req, res, next) => {
+  try {
+    const { _ids } = req?.body;
+    console.log(_ids);
+    if (!Array.isArray(_ids)) {
+      return res.status(400).json({ message: "'ids' must be an array" });
+    }
+    const addresses = await Address.find({ _id: { $in: _ids } });
+
+    res.json(addresses);
+  } catch (error) {
+    res.status(400).json({ message: "Error fetching addresses" });
+  }
+};
+
 export const createAddress = [
   // Validate and sanitize request body fields
   body("description").isString().trim().notEmpty(),
@@ -17,6 +33,7 @@ export const createAddress = [
   body("coordinates.theLat").isNumeric(),
 
   async (req, res, next) => {
+    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
